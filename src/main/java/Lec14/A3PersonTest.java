@@ -3,12 +3,12 @@ package Lec14;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PersonTest {
+public class A3PersonTest {
 
     @Test
     public void PersonFunc(){
-        Adresse a = new Adresse("Musterstrasse", "12a", 97082, "Würzburg");
-        Person b = new Person("Lukas", "Langpeter", a);
+        A3Adresse a = new A3Adresse("Musterstrasse", "12a", 97082, "Würzburg");
+        A3Person b = new A3Person("Lukas", "Langpeter", a);
 
         assertEquals("Lukas", b.vorname);
         assertEquals("Musterstrasse", b.adresse.strasse);
@@ -18,9 +18,9 @@ public class PersonTest {
 
     @Test
     public void PersonVornameFalsch(){
-        Adresse a = new Adresse("Musterstrasse", "12a", 97082, "Würzburg");
+        A3Adresse a = new A3Adresse("Musterstrasse", "12a", 97082, "Würzburg");
         try {
-            Person b = new Person("lukas", "Langpeter", a);
+            A3Person b = new A3Person("lukas", "Langpeter", a);
             fail("Vorname Kleinbuchstabe - Expected Error");
         }catch(RuntimeException e){
             assertEquals("Vorname muss mit Großbuchstaben beginnen", e.getMessage());
@@ -29,9 +29,9 @@ public class PersonTest {
 
     @Test
     public void PersonStrasseFalsch(){
-        Adresse a = new Adresse("musterstrasse", "12a", 97082, "Würzburg");
+        A3Adresse a = new A3Adresse("musterstrasse", "12a", 97082, "Würzburg");
         try {
-            Person b = new Person("Lukas", "Langpeter", a);
+            A3Person b = new A3Person("Lukas", "Langpeter", a);
             fail("Straße Kleinbuchstabe - Expected Error");
         }catch(RuntimeException e){
             assertEquals("Straße muss mit Großbuchstaben beginnen", e.getMessage());
@@ -41,9 +41,9 @@ public class PersonTest {
 
     @Test
     public void PersonOrtFalsch(){
-        Adresse a = new Adresse("Musterstrasse", "12a", 97082, "würzburg");
+        A3Adresse a = new A3Adresse("Musterstrasse", "12a", 97082, "würzburg");
         try {
-            Person b = new Person("Lukas", "Langpeter", a);
+            A3Person b = new A3Person("Lukas", "Langpeter", a);
             fail("Ort Kleinbuchstabe - Expected Error");
         }catch(RuntimeException e){
             assertEquals("Ort muss mit Großbuchstaben beginnen", e.getMessage());
@@ -53,9 +53,9 @@ public class PersonTest {
 
     @Test
     public void PersonHausnummerFalsch(){
-        Adresse a = new Adresse("Musterstrasse", "A12", 97082, "Würzburg");
+        A3Adresse a = new A3Adresse("Musterstrasse", "A12", 97082, "Würzburg");
         try {
-            Person b = new Person("Lukas", "Langpeter", a);
+            A3Person b = new A3Person("Lukas", "Langpeter", a);
             fail("Hausnummer startet nicht mit Ziffer - Expected Error");
         }catch(RuntimeException e){
             assertEquals("Hausnummer muss mit Ziffer beginnen", e.getMessage());

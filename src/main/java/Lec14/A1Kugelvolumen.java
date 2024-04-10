@@ -1,6 +1,6 @@
 package Lec14;
 
-public class Ueb1 {
+public class A1Kugelvolumen {
     public static double berechneKugelvolumen(double radius){
         if(radius < 0){
             throw new RuntimeException("Ungültiges Argument");

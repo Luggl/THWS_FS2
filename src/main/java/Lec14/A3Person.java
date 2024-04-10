@@ -1,11 +1,11 @@
 package Lec14;
 
-public class Person {
+public class A3Person {
     String vorname;
     String nachname;
-    Adresse adresse;
+    A3Adresse adresse;
 
-    public Person(String vorname, String nachname, Adresse adresse){
+    public A3Person(String vorname, String nachname, A3Adresse adresse){
         if(vorname.charAt(0) < 'A' || vorname.charAt(0) > 'Z') {
             throw new RuntimeException("Vorname muss mit Großbuchstaben beginnen");
         }else if(adresse.strasse.charAt(0) < 'A' || adresse.strasse.charAt(0) > 'Z'){

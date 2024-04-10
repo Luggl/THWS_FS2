@@ -1,4 +1,4 @@
-package Lec15;
+package Lec15_2;
 
 public class Student extends Person {
     String taetigkeit;

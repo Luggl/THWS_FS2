@@ -1,10 +1,10 @@
 package Lec14;
 
-public class Strecke {
+public class A4Strecke {
     int a;
     int b;
 
-    public Strecke (int a, int b){
+    public A4Strecke(int a, int b){
         if(a <=0 || b<=0){
             throw new RuntimeException("negativ!");
         }else if(b<a){
@@ -16,7 +16,7 @@ public class Strecke {
         }
     }
 
-    public static boolean Ueberschneidung(Strecke first, Strecke second){
+    public static boolean Ueberschneidung(A4Strecke first, A4Strecke second){
         boolean out = false;
         if(first.a < second.a && first.b > second.a ||
                 first.a > second.a && first.a < second.b){

@@ -1,4 +1,4 @@
-package Lec15;
+package Lec15_2;
 
 public class Professor extends Person{
     String taetigkeit;

@@ -1,6 +1,6 @@
 package Lec14;
 
-public class Ueb2 {
+public class A2Punkt {
     int x;
     int y;
     public void verschiebePunkt(int zielX, int zielY) {

@@ -1,4 +1,8 @@
-package Lec15;
+package Lec15_2;
+
+import Lec15_2.Person;
+import Lec15_2.Professor;
+import Lec15_2.Student;
 
 public class MainPerson {
     public static void main(String[] args){

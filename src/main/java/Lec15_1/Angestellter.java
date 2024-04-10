@@ -1,4 +1,4 @@
-package Lec15;
+package Lec15_1;
 
 public class Angestellter {
     String vorname;

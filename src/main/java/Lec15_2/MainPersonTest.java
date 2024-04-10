@@ -1,7 +1,6 @@
-package Lec15;
+package Lec15_2;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class MainPersonTest {
 

@@ -1,6 +1,6 @@
-package Lec15;
+package Lec15_1;
 
-public class Abteilungsleiter extends Angestellter{
+public class Abteilungsleiter extends Angestellter {
 
     public Abteilungsleiter(String vorname, String nachname, int identifikator, int grundgehalt, String geburtsdatum){
         super(vorname, nachname, identifikator, grundgehalt, geburtsdatum);

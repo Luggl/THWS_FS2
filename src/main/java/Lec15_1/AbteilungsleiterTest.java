@@ -1,4 +1,4 @@
-package Lec15;
+package Lec15_1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

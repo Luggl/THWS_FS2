@@ -3,10 +3,10 @@ package Lec14;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class Ueb2Test {
+public class A2PunktTest {
     @Test
     public void testFunct(){
-        Ueb2 punkt = new Ueb2();
+        A2Punkt punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
         punkt.verschiebePunkt(250, 385);
@@ -16,7 +16,7 @@ public class Ueb2Test {
 
     @Test
     public void testNegativeX(){
-        Ueb2 punkt = new Ueb2();
+        A2Punkt punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
         try{
@@ -29,7 +29,7 @@ public class Ueb2Test {
     }
     @Test
     public void testNegativeY() {
-        Ueb2 punkt = new Ueb2();
+        A2Punkt punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
         try {
@@ -41,7 +41,7 @@ public class Ueb2Test {
     }
     @Test
     public void testOutofBoundX() {
-        Ueb2 punkt = new Ueb2();
+        A2Punkt punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
         try {
@@ -53,7 +53,7 @@ public class Ueb2Test {
     }
     @Test
     public void testOutofBoundY() {
-        Ueb2 punkt = new Ueb2();
+        A2Punkt punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
         try {
