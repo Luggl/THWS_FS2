@@ -4,11 +4,30 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class A2PunktTest {
-    @Test
-    public void testFunct(){
-        A2Punkt punkt = new A2Punkt();
+
+    static A2Punkt punkt;
+
+    public void create(){
+        punkt = new A2Punkt();
         punkt.x = 1;
         punkt.y = 2;
+    }
+
+    public String tryVerschiebe(int x, int y){
+        String errormessage ="";
+        try{
+            punkt.verschiebePunkt(x, y);
+            fail("Fehler provozieren");
+        }catch(RuntimeException e){
+            errormessage = e.getMessage();
+        }
+        return(errormessage);
+    }
+
+
+    @Test
+    public void testFunct(){
+        create();
         punkt.verschiebePunkt(250, 385);
         assertEquals(250, punkt.x);
         assertEquals(385, punkt.y);
@@ -16,51 +35,24 @@ public class A2PunktTest {
 
     @Test
     public void testNegativeX(){
-        A2Punkt punkt = new A2Punkt();
-        punkt.x = 1;
-        punkt.y = 2;
-        try{
-            punkt.verschiebePunkt(1, -3);
-            fail("Negative Y - expected Error!");
-        }catch (RuntimeException e){
-            assertEquals("Negativer Wert!", e.getMessage());
-        }
+        create();
+        assertEquals("Negativer Wert!", tryVerschiebe(-5, 4));
 
     }
     @Test
     public void testNegativeY() {
-        A2Punkt punkt = new A2Punkt();
-        punkt.x = 1;
-        punkt.y = 2;
-        try {
-            punkt.verschiebePunkt(-4, 3);
-            fail("Negative X - expected Error!");
-        } catch (RuntimeException e) {
-            assertEquals("Negativer Wert!", e.getMessage());
-        }
+        create();
+        assertEquals("Negativer Wert!", tryVerschiebe(8, -3));
     }
     @Test
     public void testOutofBoundX() {
-        A2Punkt punkt = new A2Punkt();
-        punkt.x = 1;
-        punkt.y = 2;
-        try {
-            punkt.verschiebePunkt(1921, 3);
-            fail("Out of Bound X - expected Error!");
-        } catch (RuntimeException e) {
-            assertEquals("X greater than 1920!", e.getMessage());
-        }
+        create();
+        assertEquals("X greater than 1920!", tryVerschiebe(8000, 15));
+
     }
     @Test
     public void testOutofBoundY() {
-        A2Punkt punkt = new A2Punkt();
-        punkt.x = 1;
-        punkt.y = 2;
-        try {
-            punkt.verschiebePunkt(3, 1081);
-            fail("Out of Bound Y - expected Error!");
-        } catch (RuntimeException e) {
-            assertEquals("Y greater than 1080!", e.getMessage());
-        }
+        create();
+        assertEquals("Y greater than 1080!", tryVerschiebe(25, 1081));
     }
 }

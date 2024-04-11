@@ -15,7 +15,7 @@ public class MainPerson {
             }
         }
         for(int i = 0; i< personen.length; i++){
-            personen[i].gibTaetigkeitAus();
+            System.out.println(personen[i].gibTaetigkeitAus());
         }
     }
 
