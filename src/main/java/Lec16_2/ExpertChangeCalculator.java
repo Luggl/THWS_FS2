@@ -3,11 +3,18 @@ package Lec16_2;
 public class ExpertChangeCalculator implements ChangeCalculator{
     @Override
     public int[] getChange(int euros, int cent) {
-        int changeExpected = euros*100+cent;
-        int changeSum = 0;
+        int changeSum = euros*100+cent;
+        Coin[] wechselgeld = Coin.values();
         int [] out = new int[8];
 
-        while(changeSum<changeExpected){
+        for(int i = wechselgeld.length-1; i>=0; i--){
+            int temp = changeSum / wechselgeld[i].value;
+            out[i] = temp;
+            changeSum = changeSum - temp * wechselgeld[i].value;
+        }
+        return(out);
+
+    /*    while(changeSum<changeExpected){
             if(changeExpected-changeSum>=Coin.EURO_2.value){
                 changeSum += Coin.EURO_2.value;
                 out[Coin.EURO_2.ordinal()]++;
@@ -35,6 +42,6 @@ public class ExpertChangeCalculator implements ChangeCalculator{
             }
 
         }
-        return(out);
+        return(out);*/
     }
 }
