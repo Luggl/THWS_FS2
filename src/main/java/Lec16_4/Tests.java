@@ -32,6 +32,26 @@ public class Tests {
         return(out);
     }
 
+    public Reaktion getHumanReactionLeft(){
+        Reaktion out = UNENTSCHIEDEN;
+        for(int i = 10; i > 0; i--){
+            if(m.entscheide(Gefahren.GEFAHR_RECHTS) == LINKS){
+                out = LINKS;
+            }
+        }
+        return(out);
+    }
+
+    public Reaktion getCyborgReactionLeft(){
+        Reaktion out = UNENTSCHIEDEN;
+        for(int i = 10; i > 0; i--){
+            if(c.entscheide(Gefahren.GEFAHR_RECHTS) == LINKS){
+                out = LINKS;
+            }
+        }
+        return(out);
+    }
+
 
     @Test
     public void testRobot(){
@@ -50,5 +70,15 @@ public class Tests {
         boolean x = getUnentschiedenCount(c) > 100 && getUnentschiedenCount(c) < 175;
         assertTrue(x);
     }
+
+    @Test
+    public void testHumanReaction(){
+        assertEquals(LINKS, getHumanReactionLeft());
+    }
+    @Test
+    public void testCyborgReaction(){
+        assertEquals(LINKS, getCyborgReactionLeft());
+    }
+
 
 }

@@ -12,12 +12,14 @@ public class TestStack {
 
     public Object pushVererbung(){
         s.push(st);
+        s.push(i);
         s.push(d);
         return(s.getFirst());
     }
 
     public Object popVererbung(){
         s.push(st);
+        s.push(i);
         s.push(d);
         return(s.pop());
     }
