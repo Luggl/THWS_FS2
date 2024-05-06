@@ -6,6 +6,7 @@ public class OutputStreamDoubler {
     OutputStream a;
     OutputStream b;
 
+
     public OutputStreamDoubler(OutputStream a, OutputStream b){
         this.a = a;
         this.b = b;
@@ -34,21 +35,35 @@ public class OutputStreamDoubler {
             this.b.write(b);
         }catch(IOException e){
             e.printStackTrace();
-        }finally {
-            a.close();
-            this.b.close();
         }
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        FileOutputStream z = new FileOutputStream("file1.txt");;
-        FileOutputStream y = new FileOutputStream("file2.txt");
-        OutputStreamDoubler o = new OutputStreamDoubler(z, y);
+    public static void main(String[] args){
+        String s = "Far out in the uncharted backwaters of the unfashionable end of the Western Spiral Arm of the Galaxy lies a small unregarded yellow sun.\n" +
+                "\n" +
+                "Orbiting this at a distance of roughly ninety-two million miles is an utterly insignificant little blue-green planet whose ape-descended life forms are so amazingly primitive that they still think digital watches are a pretty neat idea.";
+
+        FileOutputStream y = null;
+        FileOutputStream z = null;
+        OutputStreamDoubler o = null;
 
         try {
+            y = new FileOutputStream("File1.txt");
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        try {
+            z = new FileOutputStream("File2.txt");
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        if(y != null && z != null) {
+            o = new OutputStreamDoubler(y, z);
+        }
 
-            byte[] ba = {1, 0, 11, 25, 35, 12, 1, 18, 't', -1};
+        try {
+            byte[] ba = s.getBytes();
             int n;
             for (int i = 0; i < ba.length; i++) {
                 n = ba[i];
@@ -58,7 +73,6 @@ public class OutputStreamDoubler {
                     e.printStackTrace();
                 }
             }
-
             o.close();
         }catch(IOException e){
                 e.printStackTrace();

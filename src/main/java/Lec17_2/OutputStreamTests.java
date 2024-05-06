@@ -23,11 +23,6 @@ public class OutputStreamTests {
         }
     }
 
-
-//    public void write(byte[] b, int off, int len)throws IOException{
-//
-//    }
-
     @Test
     public void TestNegativeOff(){
         init();
@@ -80,5 +75,18 @@ public class OutputStreamTests {
             assertEquals(e.getClass(), IndexOutOfBoundsException.class);
         }
     }
-    
+
+    @Test
+    public void TestOffAndLenOver(){
+        init();
+        try{
+            o.write(b, 3, 4);
+            fail("Len + Off too big");
+        }catch(IOException e){
+            fail("IOException not expected");
+        }catch(IndexOutOfBoundsException e){
+            assertEquals(e.getClass(), IndexOutOfBoundsException.class);
+        }
+    }
+
 }

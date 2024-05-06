@@ -25,14 +25,17 @@ public class main {
             }
         }while(!stop);
 
-        long sum = dByteBuff + dArrayUnbuff + dByteUnbuff;
-        double dByteBuffPerc = (double) 100 / sum * dByteBuff;
-        double dByteUnbuffPerc = (double) 100 / sum * dByteUnbuff;
-        double dArrayUnbuffPerc = (double) 100 / sum * dArrayUnbuff;
+        if(dByteBuff != -1 && dByteBuff != -1 && dArrayUnbuff != -1) {
+            long sum = dByteBuff + dArrayUnbuff + dByteUnbuff;
+            double dByteBuffPerc = (double) 100 / sum * dByteBuff;
+            double dByteUnbuffPerc = (double) 100 / sum * dByteUnbuff;
+            double dArrayUnbuffPerc = (double) 100 / sum * dArrayUnbuff;
 
-        System.out.println("Dauer Bytewise Buffered: " + dByteBuff + " \t\t Anteil: " + String.format("%.2f",dByteBuffPerc));
-        System.out.println("Dauer Bytewise Unbuffered: " + dByteUnbuff + " \t\t Anteil: " + String.format("%.2f", dByteUnbuffPerc));
-        System.out.println("Dauer Arraywise Unbuffered: " + dArrayUnbuff + " \t\t Anteil: " + String.format("%.2f", dArrayUnbuffPerc));
-
+            System.out.println("Dauer Bytewise Buffered: " + dByteBuff + " \t\t Anteil: " + String.format("%.2f", dByteBuffPerc));
+            System.out.println("Dauer Bytewise Unbuffered: " + dByteUnbuff + " \t\t Anteil: " + String.format("%.2f", dByteUnbuffPerc));
+            System.out.println("Dauer Arraywise Unbuffered: " + dArrayUnbuff + " \t\t Anteil: " + String.format("%.2f", dArrayUnbuffPerc));
+        }else{
+            System.out.println("Die Dauer wurde nicht korrekt berechnet");
+        }
     }
 }
