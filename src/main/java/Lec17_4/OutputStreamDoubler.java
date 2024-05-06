@@ -1,8 +1,6 @@
 package Lec17_4;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 public class OutputStreamDoubler {
     OutputStream a;
@@ -13,20 +11,16 @@ public class OutputStreamDoubler {
         this.b = b;
     }
 
-    public void close() throws IOException{
-        try{
-            if(a!=null){
-                a.close();
-            }
+    public void close() throws IOException {
+        try {
+            a.close();
         }catch(IOException e){
-            throw(new IOException("a could not be closed"));
+            throw new IOException("Outputstream a failed");
         }
-        try{
-            if(b!=null){
-                b.close();
-            }
+        try {
+            b.close();
         }catch(IOException e){
-            throw(new IOException("b could not be closed"));
+            throw new IOException("Outputstream b failed");
         }
     }
 
@@ -47,14 +41,12 @@ public class OutputStreamDoubler {
 
     }
 
-    public static void main(String[] args) {
-        FileOutputStream a;
-        FileOutputStream b;
+    public static void main(String[] args) throws FileNotFoundException {
+        FileOutputStream z = new FileOutputStream("file1.txt");;
+        FileOutputStream y = new FileOutputStream("file2.txt");
+        OutputStreamDoubler o = new OutputStreamDoubler(z, y);
 
         try {
-            a = new FileOutputStream("file1.txt");
-            b = new FileOutputStream("file2.txt");
-            OutputStreamDoubler o = new OutputStreamDoubler(a, b);
 
             byte[] ba = {1, 0, 11, 25, 35, 12, 1, 18, 't', -1};
             int n;
@@ -66,17 +58,10 @@ public class OutputStreamDoubler {
                     e.printStackTrace();
                 }
             }
+
+            o.close();
         }catch(IOException e){
-            e.printStackTrace();
-        }finally {
-            if(a!=null) {
-                a.close();
-            }
-            if(b!=null) {
-                b.close();
-            }
+                e.printStackTrace();
         }
-
-
     }
 }
