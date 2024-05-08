@@ -4,9 +4,11 @@ import java.io.*;
 
 public class FileNotFound {
     public static void main(String[] args) {
-        File x = new File("404.jpg");
-       // File f =
-
-
+        try(InputStream x = new FileInputStream("404.jpg")){
+            int i = x.read();
+            System.out.println(i);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

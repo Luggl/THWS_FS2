@@ -1,6 +1,8 @@
 package Lec17_3;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Scanner;
 
 import static Lec17_3.CopyMethods.*;
@@ -13,19 +15,19 @@ public class main {
         long dByteUnbuff = -1;
         long dByteBuff = -1;
         long dArrayUnbuff = -1;
-        do{
+        do {
             String path = scanner.next();
-            try{
+            try {
                 dByteUnbuff = CopyBytewiseUnbufferedDuration(path);
                 dByteBuff = CopyBytewiseBufferedDuration(path);
                 dArrayUnbuff = CopyArraywiseUnbufferedDuration(path);
                 stop = true;
-            }catch (IOException e){
+            } catch (IOException e) {
                 System.out.println("Bitte erneut probieren - Path nicht korrekt");
             }
-        }while(!stop);
+        } while (!stop);
 
-        if(dByteBuff != -1 && dByteBuff != -1 && dArrayUnbuff != -1) {
+        if (dByteBuff != -1 && dByteBuff != -1 && dArrayUnbuff != -1) {
             long sum = dByteBuff + dArrayUnbuff + dByteUnbuff;
             double dByteBuffPerc = (double) 100 / sum * dByteBuff;
             double dByteUnbuffPerc = (double) 100 / sum * dByteUnbuff;
@@ -34,8 +36,18 @@ public class main {
             System.out.println("Dauer Bytewise Buffered: " + dByteBuff + " \t\t Anteil: " + String.format("%.2f", dByteBuffPerc));
             System.out.println("Dauer Bytewise Unbuffered: " + dByteUnbuff + " \t\t Anteil: " + String.format("%.2f", dByteUnbuffPerc));
             System.out.println("Dauer Arraywise Unbuffered: " + dArrayUnbuff + " \t\t Anteil: " + String.format("%.2f", dArrayUnbuffPerc));
-        }else{
+        } else {
             System.out.println("Die Dauer wurde nicht korrekt berechnet");
+        }
+
+        File x = new File("C:\\Users\\llang\\Music\\Voicy_Nice_Meme.mp3");
+        File c = new File("copy.mp3");
+        try {
+            System.out.println("Größe der Original-Datei: \t" + Files.size(x.toPath()));
+            System.out.println("Größe der Kopie-Datei: \t\t" + Files.size(c.toPath()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

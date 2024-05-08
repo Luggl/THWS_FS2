@@ -1,12 +1,13 @@
 package Lec17_1;
 
+import java.util.ArrayList;
+
 public class OutOfMemory {
     public static void main(String[] args) {
-        int[] a = new int[4];
-        int[] b = new int[]{1, 4, 5, 6, 7};
+        int[] a = new int[999999999];
+        int[] b = new int[999999999];
+        int[] c = new int[a.length + b.length];
 
-        a = b;
-
-        System.out.println(a);
+        System.out.println(c);
     }
 }
