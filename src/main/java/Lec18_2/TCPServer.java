@@ -5,30 +5,51 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TCPServer {
+    static Hangman h = new Hangman();
     private static final int PORT = 5000;
 
-    private static void getClientInput(){
-        try(ServerSocket ss = new ServerSocket(PORT);
-            Socket connection = ss.accept();
-            InputStream is = connection.getInputStream();
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            OutputStream os = connection.getOutputStream();
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
-        ){
-            System.out.println("accept done");
-            br.readLine();
-            bw.write("ok");
-            System.out.println("ok write");
-            bw.newLine();
-            System.out.println("newLine sent");
-            bw.flush();
-            System.out.println("flushed");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    private static void init(){
+        h.init();
     }
 
     public static void main(String[] args) {
-        getClientInput();
+        init();
+        try(ServerSocket ss = new ServerSocket(PORT);
+            Socket connection = ss.accept();
+            InputStream is = connection.getInputStream();
+            InputStreamReader isr = new InputStreamReader(is);
+            OutputStream os = connection.getOutputStream();
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+            BufferedReader br = new BufferedReader(isr);
+            ) {
+
+                System.out.println("Connection done");
+                do{
+                    char userTry = br.readLine().charAt(0);
+                    System.out.println("got Client Input");
+                    h.tryGuess(userTry);
+
+                    String out = "Hangman -- aktueller Zustand:\n" +
+                            "Anzahl Versuche: " + h.getTryCount() +"\n" +
+                            "Anzahl Fehler: + " + h.getFailCount() + "\n" +
+                            "Aktueller Lösungszustand: " + String.valueOf(h.getUserTry());
+                    bw.write(out);
+                    bw.newLine();
+                    bw.flush();
+                    System.out.println("wrote out");
+                    bw.write(h.getTryCount());
+                    bw.newLine();
+                    bw.flush();
+                    bw.write(h.getFailCount());
+                    bw.newLine();
+                    bw.flush();
+
+                }while(true);
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+        }
     }
+
 }

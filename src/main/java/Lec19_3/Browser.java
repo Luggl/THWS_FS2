@@ -2,19 +2,23 @@ package Lec19_3;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 
 public class Browser {
-    public URL back()
+    public Optional<URL> back()
     {
+        Optional<URL> out;
         try
         {
             //simulate: fetch last URL from Stack
-            return Math.random() < 0.5 ? new URL("http://google.de") : null;
+            out =  Math.random() < 0.5 ? Optional.of(new URL("http://google.de")) : null;
         }
         catch(MalformedURLException e)
         {
-            return null;
+            out = Optional.empty();
         }
+
+        return(out);
     }
 
     public String retrieveSite(URL url)
@@ -26,7 +30,9 @@ public class Browser {
     {
         System.out.println("Normal back");
         Browser browser = new Browser();
-        URL back = browser.back();
-        if (back != null) browser.retrieveSite(back);
+        Optional<URL> back = browser.back();
+        if (back.isPresent()){
+            browser.retrieveSite(back.get());}
     }
+
 }
