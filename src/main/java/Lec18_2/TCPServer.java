@@ -3,41 +3,32 @@ package Lec18_2;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.Buffer;
 
 public class TCPServer {
-    public static void main(String[] args) {
+    private static final int PORT = 5000;
 
-        final int PORT = 5000;
-        Hangman h = new Hangman();
-        h.initWord();
-
+    private static void getClientInput(){
         try(ServerSocket ss = new ServerSocket(PORT);
-            Socket socket = ss.accept();
-            InputStream is = socket.getInputStream();
-            BufferedReader br =  new BufferedReader(new InputStreamReader(is));
-            OutputStream os = socket.getOutputStream();
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));){
-
-            do{
-                String guess = br.readLine();
-                if(guess == null){
-                    break;
-                }else{
-                    bw.write("angekommen");
-                    bw.flush();
-                    bw.write(h.Try(guess));
-                    bw.flush();
-                }
-
-            }while(h.tryCount <=15 && h.failsCount <=10);
-
+            Socket connection = ss.accept();
+            InputStream is = connection.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            OutputStream os = connection.getOutputStream();
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(os));
+        ){
+            System.out.println("accept done");
+            br.readLine();
+            bw.write("ok");
+            System.out.println("ok write");
+            bw.newLine();
+            System.out.println("newLine sent");
+            bw.flush();
+            System.out.println("flushed");
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
-
-
+    public static void main(String[] args) {
+        getClientInput();
+    }
 }
