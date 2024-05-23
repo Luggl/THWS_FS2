@@ -4,21 +4,25 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
+import static Lec19_1.TCPServer.failsLeft;
+import static Lec19_1.TCPServer.triesLeft;
+
 public class TCPClient {
+    final static int PORT = 5025;
+    final static String HOST = "localhost";
     static String firstmsg =
             "Welcome to Hangman!\n" +
                     "Games rules should be known";
-    static String getUserInput = "Give me your try";
-    static char userGuess;
+    static String getUserInput = "Give me your try\t\t -->";
 
     public static void main(String[] args) {
 
-        try(Socket socket = new Socket("localhost", 5050);
+        try(Socket socket = new Socket(HOST, PORT);
             InputStream is = socket.getInputStream();
-            ObjectInputStream ois = new ObjectInputStream(is);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             OutputStream os = socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
+            ObjectInputStream ois = new ObjectInputStream(is);
             Scanner scanner = new Scanner(System.in);
         ){
             if(socket.isConnected()){
@@ -33,10 +37,23 @@ public class TCPClient {
                 System.out.println(getUserInput);
                 String userTry = scanner.nextLine();
                 if(userTry.equals("end")){
+                    System.out.println("End of Program");
                     break;
                 }
                 oos.writeObject(new Rateversuch(userTry.charAt(0)));
                 Answer a = (Answer) ois.readObject();
+                System.out.println("Aktueller Zustand: " + a.getCurrent());
+                System.out.println(a.gettextAnswer());
+                System.out.println("Tries left: " + triesLeft);
+                System.out.println("Fail left: " + failsLeft);
+                System.out.println();
+                boolean gameEnd = a.isGameEnded();
+                boolean wordDone = a.isWordDone();
+
+                if(gameEnd || wordDone){
+                    break;
+                }
+
 
 
             }while(true);

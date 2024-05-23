@@ -1,15 +1,46 @@
 package Lec19_1;
 
-public class Answer {
-    static String text;
-    static boolean wordDone = false;
-    static boolean charHit;
-    static boolean gameEnded = false;
+import java.io.Serializable;
 
-    public Answer(String text, boolean wordDone, boolean charHit, boolean gameEnded){
-        this.text = text;
-        this.wordDone = wordDone;
-        this.charHit = charHit;
-        this.gameEnded = gameEnded;
+public class Answer implements Serializable {
+    private String current;
+    private String textAnswer;
+    private boolean wordDone = false;
+    private boolean charHit;
+    private boolean gameEnded = false;
+
+    public Answer(String current, boolean charHit, boolean wordDone, boolean gameEnded){
+        this.current = current;
+        if(wordDone) {
+            this.wordDone = true;
+            this.gameEnded = true;
+            this.textAnswer = "Nice - you won!";
+        }else if(gameEnded){
+            this.gameEnded = true;
+            this.textAnswer = "Bad luck! You lost!";
+        }else if(charHit){
+            this.charHit = true;
+            this.textAnswer = "Good job! ";
+        }else{
+            this.charHit = false;
+            this. textAnswer = "Better luck next time!";
+        }
+
     }
+    public String gettextAnswer(){
+        return(this.textAnswer);
+    }
+    public boolean isWordDone(){
+        return(this.wordDone);
+    }
+    public boolean isCharHit(){
+        return(this.charHit);
+    }
+    public boolean isGameEnded(){
+        return(gameEnded);
+    }
+    public String getCurrent(){
+        return(current);
+    }
+
 }
