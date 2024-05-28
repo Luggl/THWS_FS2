@@ -11,7 +11,7 @@ public class Browser {
         try
         {
             //simulate: fetch last URL from Stack
-            out =  Math.random() < 0.5 ? Optional.of(new URL("http://google.de")) : null;
+            out =  Math.random() < 0.5 ? Optional.of(new URL("http://google.de")) : Optional.empty();
         }
         catch(MalformedURLException e)
         {
@@ -32,7 +32,11 @@ public class Browser {
         Browser browser = new Browser();
         Optional<URL> back = browser.back();
         if (back.isPresent()){
-            browser.retrieveSite(back.get());}
+            browser.retrieveSite(back.get());
+            System.out.println("retrieve done");
+        }else{
+            System.out.println("Nothing there");
+        }
     }
 
 }

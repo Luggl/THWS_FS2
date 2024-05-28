@@ -8,8 +8,8 @@ import java.util.Arrays;
 public class TCPServer {
 
     static final int PORT = 5025;
-    static int triesLeft = 15;
-    static int failsLeft = 5;
+    public static int triesLeft = 15;
+    public static int failsLeft = 5;
     static String[] words = {"Apfelsaft", "Zimtschnecke", "Waldfee", "Magensaeure"};
     static char[] wordToGuess = words[(int)(Math.random() * words.length)].toCharArray();
     static char[] userTry = new char[wordToGuess.length];
@@ -57,17 +57,17 @@ public class TCPServer {
                 if(fail){
                     if(failsLeft < 0 || triesLeft < 0){
 
-                        oos.writeObject(new Answer(getUserTry(), false, false, true));
+                        oos.writeObject(new Answer(getUserTry(), false, false, true, failsLeft, triesLeft));
                         break;
                     }else{
-                        oos.writeObject(new Answer(getUserTry(), false, false, false));
+                        oos.writeObject(new Answer(getUserTry(), false, false, false, failsLeft, triesLeft));
                     }
                 }else{
                     if(Arrays.toString(wordToGuess).equals(Arrays.toString(userTry))){
-                        oos.writeObject(new Answer(getUserTry(), true, true, false));
+                        oos.writeObject(new Answer(getUserTry(), true, true, false, failsLeft, triesLeft));
                         break;
                     }else{
-                        oos.writeObject(new Answer(getUserTry(), true, false, false));
+                        oos.writeObject(new Answer(getUserTry(), true, false, false, failsLeft, triesLeft));
                     }
 
                 }

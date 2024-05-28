@@ -8,9 +8,13 @@ public class Answer implements Serializable {
     private boolean wordDone = false;
     private boolean charHit;
     private boolean gameEnded = false;
+    private int failsLeft;
+    private int triesLeft;
 
-    public Answer(String current, boolean charHit, boolean wordDone, boolean gameEnded){
+    public Answer(String current, boolean charHit, boolean wordDone, boolean gameEnded, int failsLeft, int triesLeft){
         this.current = current;
+        this.triesLeft = triesLeft;
+        this.failsLeft = failsLeft;
         if(wordDone) {
             this.wordDone = true;
             this.gameEnded = true;
@@ -41,6 +45,12 @@ public class Answer implements Serializable {
     }
     public String getCurrent(){
         return(current);
+    }
+    public int getFailsLeft(){
+        return(failsLeft);
+    }
+    public int getTriesLeft(){
+        return(triesLeft);
     }
 
 }

@@ -4,8 +4,6 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-import static Lec19_1.TCPServer.failsLeft;
-import static Lec19_1.TCPServer.triesLeft;
 
 public class TCPClient {
     final static int PORT = 5025;
@@ -44,8 +42,8 @@ public class TCPClient {
                 Answer a = (Answer) ois.readObject();
                 System.out.println("Aktueller Zustand: " + a.getCurrent());
                 System.out.println(a.gettextAnswer());
-                System.out.println("Tries left: " + triesLeft);
-                System.out.println("Fail left: " + failsLeft);
+                System.out.println("Tries left: " + a.getTriesLeft());
+                System.out.println("Fail left: " + a.getFailsLeft());
                 System.out.println();
                 boolean gameEnd = a.isGameEnded();
                 boolean wordDone = a.isWordDone();
