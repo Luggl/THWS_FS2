@@ -1,6 +1,7 @@
 package Lec20_2;
 
 import Lec20_1.Cards;
+import com.sun.jdi.Value;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,13 +10,15 @@ import java.util.Collections;
 public class Skat {
 
     ArrayList<Skatkarten> allCards = new ArrayList<>();
-    String[] colors = {"Herz", "Pik", "Kreuz", "Karo"};
+    ColorENUM c;
+    ValueENUM v;
+
 
     //Karten erzeugen:
     public void getCards() {
-        for (int i = 2; i <= 14; i++) {
-            for (String s : colors) {
-         //       allCards.add(new Skatkarten(ColorENUM.name(s)), i);
+        for(ColorENUM e : ColorENUM.values()){
+            for(ValueENUM en : ValueENUM.values()){
+                allCards.add(new Skatkarten(e, en));
             }
         }
     }
@@ -37,9 +40,9 @@ public class Skat {
         Skat s = new Skat();
         s.getCards();
         s.shuffleCards();
-        s.shuffleCards();
-        for(Skatkarten x : s.getPlayerHand()){
-            System.out.println(s);
+        ArrayList<Skatkarten> player = s.getPlayerHand();
+        for(Skatkarten x : player){
+            System.out.println(x);
         }
     }
 }

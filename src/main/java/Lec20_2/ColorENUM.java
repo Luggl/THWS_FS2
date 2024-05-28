@@ -16,4 +16,8 @@ public enum ColorENUM {
         return(this.val);
     }
 
+    String getName(){
+        return(this.name);
+    }
+
 }
