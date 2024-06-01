@@ -24,6 +24,27 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.10.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.28</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>2.28</version>
+        </dependency>
+        <!-- Ab Java 9: -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>javax.activation-api</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>2.1.5</version>
+        </dependency>
     </dependencies>
 
 </project>
