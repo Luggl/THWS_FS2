@@ -1,6 +1,6 @@
 package Lec20_1;
 
-public class Cards  {
+public class Cards {
     String color;
     String value;
 
