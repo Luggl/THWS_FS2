@@ -46,7 +46,7 @@ public class Finder {
         String searchString = null;
         String[] files = new String[]{"Finder1.txt", "Finder2.txt", "Finder3.txt", "Finder4.txt"};
         try {
-            searchString = br.readLine();
+            searchString = br.readLine();       //Purzelbaum
             finder.findStringInFiles(searchString, files);
             br.close();
         } catch (IOException ex) {
