@@ -9,7 +9,6 @@ import java.util.Optional;
 
 
 public class BrowserTest {
-    Browser b = new Browser();
     @Test
     public void backTest(){
         Optional<URL> u = b.back();
@@ -22,4 +21,5 @@ public class BrowserTest {
         }
 
     }
+    Browser b = new Browser();
 }
