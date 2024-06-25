@@ -1,4 +1,4 @@
-package Second_Round.Lec72_2;
+package Second_Round.Lec17_2;
 
 import java.io.*;
 
