@@ -8,33 +8,38 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class TCPClient {
-    final int PORT = 5050;
-    final String HOST = "localhost";
+    private final int PORT = 5050;
+    private final String HOST = "localhost";
 
-    public void init(){
-        System.out.println("initializing");
-
+    private void game(){
+        System.out.println("Welcome to Hangman");
         try(Socket socket = new Socket(HOST, PORT);
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            ){
-            System.out.println("done init");
-            System.out.println(br.readLine());
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             Scanner scanner = new Scanner(System.in);
-            do{
-                bw.write(scanner.nextLine());
-                bw.newLine();
+        ){
+            System.out.println(br.readLine());
+            while(true){
+                String status = br.readLine();
+                System.out.println(status);
+                System.out.println("Give me your Guess: ");
+                char guess = scanner.nextLine().charAt(0);
+                bw.write(guess + "\n");
                 bw.flush();
-            }while(true);
+                String result = br.readLine();
+                System.out.println(result);
+                if(result.startsWith("Sorry, you lost") || result.startsWith("Congratulations")){
+                    break;
+                }
+            }
 
-        }catch(Exception e ){
+        }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
-        TCPClient serv = new TCPClient();
-        serv.init();
+        TCPClient client = new TCPClient();
+        client.game();
     }
 }
