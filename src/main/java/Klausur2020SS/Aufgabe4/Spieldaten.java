@@ -7,6 +7,12 @@ public class Spieldaten {
     private int geld;
     private Klausur2020SS.Aufgabe3.ArrayList<String> spielerIDs = new Klausur2020SS.Aufgabe3.ArrayList<>(new ArrayList<>());
 
+    @Override
+    public String toString(){
+        String out = "Geld: " + this.geld + "\nEs gibt noch eine Liste, die kann ich aber nicht ansehen, da ich die Klasse nicht verändern will - sorry";
+    return(out);
+    }
+
     public int getGeld(){
         return(this.geld);
     }
@@ -44,6 +50,8 @@ public class Spieldaten {
                 .add("abc")
                 .add("xyz")
                 .build();
+
+        System.out.println(daten);
 
 //        daten.getSpielerIDs().add("bla");
     }
