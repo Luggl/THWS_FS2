@@ -8,6 +8,7 @@ public class Nährstoffangabe {
     int kohlenhydrate;
     int natrium;
 
+
     private Nährstoffangabe(int portionsgr, int anzahl, int eiweiß, int fett, int kohlenhydrate, int natrium){
         this.portionsgr = portionsgr;
         this.anzahl = anzahl;

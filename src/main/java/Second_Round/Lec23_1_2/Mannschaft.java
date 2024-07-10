@@ -1,9 +1,6 @@
-package Second_Round.Lec23_1;
+package Second_Round.Lec23_1_2;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Mannschaft implements Comparable<Mannschaft>
 {
@@ -68,36 +65,32 @@ public class Mannschaft implements Comparable<Mannschaft>
   }
 
   public static void main(String[] args) {
-    List<Mannschaft> tabelle = createTabelle();
-    tabelle.stream()
-            .filter(punkte -> punkte.punkte>50)
-            .forEach(System.out::println);
+    createTabelle().stream()
+            .filter(m -> m.punkte>50)
+            .forEach(m -> System.out.println(m));
 
-    tabelle.stream()
-            .forEach(mannschaft -> System.out.println(mannschaft.name));
+    createTabelle().stream()
+            .forEach(m -> System.out.println(m.name));
 
-    tabelle.stream()
-            .filter(mannschaft -> mannschaft.name.startsWith("F"))
-            .sorted(new Comparator<Mannschaft>() {
-              @Override
-              public int compare(Mannschaft o1, Mannschaft o2) {
-                return(o1.name.compareTo(o2.name));
-              }
-            })
-            .forEach(System.out::println);
+    createTabelle().stream()
+            .filter(m -> m.name.startsWith("F"))
+            .sorted((o1, o2) -> o1.name.compareTo(o2.name))
+                    .forEach(System.out::println);
 
-    System.out.println(tabelle.stream()
+    createTabelle().stream()
             .max(new Comparator<Mannschaft>() {
               @Override
-              public int compare(Mannschaft o1, Mannschaft o2){
-                if(o1.gegentore>o2.gegentore){
-                  return (1);
+              public int compare(Mannschaft o1, Mannschaft o2) {
+                if(o1.gegentore > o2.gegentore){
+                  return(1);
                 }else if(o1.gegentore < o2.gegentore){
                   return(-1);
                 }else{
                   return(0);
                 }
               }
-            }));
+            })
+            .ifPresent(System.out::println);
+
   }
 }

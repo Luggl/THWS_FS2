@@ -48,9 +48,9 @@ public class TextServer<E extends Game> {
     }
     public static void main(String[] args) throws IOException
     {
-        TextServer server = new TextServer(new GameGalgenmaennchen());
 //        Aufgabe b)
         do{
+            TextServer server = new TextServer(new GameGalgenmaennchen());
             try {
                 server.start();
             }catch(IOException e){
