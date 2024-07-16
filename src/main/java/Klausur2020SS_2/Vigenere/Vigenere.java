@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Vigenere implements Serializable {
-    ArrayList<char[]> vigenere = new ArrayList<>();
+    transient ArrayList<char[]> vigenere = new ArrayList<>();
     char[] keyword = new char[26];
-    char[] alph = new char[26];
+    transient char[] alph = new char[26];
 
     private void init(){
         for(int i = 0; i<alph.length; i++){
