@@ -22,6 +22,7 @@ public class EvenOdd extends Thread{
 
         e1.start();
         e2.start();
+
     }
 
 }

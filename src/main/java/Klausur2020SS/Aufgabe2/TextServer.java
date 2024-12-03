@@ -12,9 +12,11 @@ public class TextServer<E extends Game> {
     }
     public void start() throws IOException {
         try (ServerSocket ss = new ServerSocket(5000);) {
-            try (Socket connection = ss.accept();) {
-                handleConnection(connection);
-            }
+            do{
+                try (Socket connection = ss.accept();) {
+                    handleConnection(connection);
+                }
+            }while(true);
         }
     }
     private void handleConnection(Socket connection) throws IOException {
@@ -39,7 +41,7 @@ public class TextServer<E extends Game> {
     }
     protected static void writeToClient(BufferedWriter toClient, String s) throws IOException {
         try{
-            toClient.write(s+"\n");
+            toClient.write(s);
             toClient.flush();
         }catch(IOException e){
             throw new IOException("Failed writeToClient");
@@ -48,14 +50,11 @@ public class TextServer<E extends Game> {
     }
     public static void main(String[] args) throws IOException
     {
-//        Aufgabe b)
-        do{
-            TextServer server = new TextServer(new GameGalgenmaennchen());
-            try {
-                server.start();
-            }catch(IOException e){
-                System.out.println(e.getMessage());
-            }
-        }while(true);
+        TextServer<GameGalgenmaennchen> server = new TextServer<>(new GameGalgenmaennchen());
+        try {
+            server.start();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

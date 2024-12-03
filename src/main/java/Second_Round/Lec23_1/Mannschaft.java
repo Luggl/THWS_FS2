@@ -78,12 +78,7 @@ public class Mannschaft implements Comparable<Mannschaft>
 
     tabelle.stream()
             .filter(mannschaft -> mannschaft.name.startsWith("F"))
-            .sorted(new Comparator<Mannschaft>() {
-              @Override
-              public int compare(Mannschaft o1, Mannschaft o2) {
-                return(o1.name.compareTo(o2.name));
-              }
-            })
+            .sorted()
             .forEach(System.out::println);
 
     System.out.println(tabelle.stream()
